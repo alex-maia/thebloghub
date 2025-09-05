@@ -1,0 +1,14 @@
+// -----------------
+// font main
+// -----------------
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    src: local('☺'), url('/assets/fonts/Inter-VariableFont.woff2') format('woff2'), url('/assets/fonts/Inter-VariableFont.woff') format('woff');
+    font-weight: 300 800;
+    font-style: normal;
+}
+
+
+$font--main: "Inter", sans-serif;

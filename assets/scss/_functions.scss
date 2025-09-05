@@ -1,0 +1,151 @@
+@use "tokens/tokens" as *;
+
+//-----------------
+// CONTAINER SIZES
+//-----------------
+
+@mixin container--desktop {
+    $container-max-width: 1344px;
+    $container-padding: $size--48;
+
+    width: min($container-max-width, 100% - ($container-padding * 2));
+    margin-inline: auto;
+}
+
+@mixin container--tablet {
+    $container-padding: $size--32;
+
+    width: min(100% - ($container-padding * 2));
+    margin-inline: auto;
+}
+
+@mixin container--mobile {
+    $container-padding: $size--24;
+
+    width: min(100% - ($container-padding * 2));
+    margin-inline: auto;
+}
+
+//--------------
+// TRANSITION
+//--------------
+
+@mixin transition {
+    transition: all .3s ease-out;
+}
+
+//--------------
+// SCROLLBAR
+//--------------
+
+
+@mixin scrollbar($light: true) {
+    @if $light {
+        &::-webkit-scrollbar {
+            height: $size--4;
+            width: $size--4;
+            border-radius: $radius--sm;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: $neutral--60;
+            border-radius: $radius--sm;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $red--48-main;
+            border-radius: $radius--sm;
+            @include transition;
+
+            &:hover {
+                background-color: $red--30;
+            }
+        }
+    }
+    @else {
+        &::-webkit-scrollbar {
+            height: $size--4;
+            width: $size--4;
+            border-radius: $radius--sm;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: $neutral--86;
+            border-radius: $radius--sm;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $red--48-main;
+            border-radius: $radius--sm;
+            @include transition;
+
+            &:hover {
+                background-color: $red--30;
+            }
+        }
+    }
+}
+
+//----------------
+// FONT TITLE
+//----------------
+
+@mixin title--xsmall ($color) {
+    font-family: $font--main;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $color;
+}
+
+@mixin title--small ($color) {
+    font-family: $font--main;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    color: $color;
+}
+
+@mixin title--medium ($color) {
+    font-family: $font--main;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.4;
+    color: $color;
+}
+
+@mixin title--large ($color) {
+    font-family: $font--main;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.4;
+    color: $color;
+}
+
+@mixin title--large ($color) {
+    font-family: $font--main;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.4;
+    color: $color;
+}
+
+//----------------
+// FONT TEXT
+//----------------
+
+@mixin text--xsmall ($color) {
+    font-family: $font--main;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $color;
+}
+
+@mixin text--xsmall--medium ($color) {
+    font-family: $font--main;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $color;
+}

@@ -1,0 +1,46 @@
+@use 'sass:color';
+@use "../functions" as *;
+@use "../tokens/colors" as *;
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    border-bottom: 1px solid $beige--37;
+
+    &__logo{
+        @include title--medium($beige--87--main);
+        text-transform: capitalize;
+    }
+
+    &__nav{
+        display: flex;
+        gap: 48px;
+        align-items: center
+    }
+
+    &__link{
+        @include text--xsmall--medium($beige--87--main);
+        text-transform: capitalize;
+        @include transition;
+
+        &:hover{
+            color: color.adjust($beige--87--main, $lightness: -30%);
+        }
+
+        &--orange{
+            color: $orange--60--main;
+
+            &:hover{
+                color: color.adjust($orange--60--main, $lightness: -30%);
+            }
+        }
+    }
+
+    .header__right{
+        display: flex;
+        gap: 24px;
+        align-items: center;    
+    }
+}
