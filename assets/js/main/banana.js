@@ -1,1 +1,3 @@
-console.log("banana");
+$(document).ready(function(){
+    console.log("banana");
+})

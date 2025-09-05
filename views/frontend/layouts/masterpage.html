@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="/assets/css/minify/main.min.css">
 </head>
 <body>
     {{template "header" .}}
@@ -11,5 +12,8 @@
     {{ template "content" . }}
     
     {{template "footer" .}}
+
+    <script src="/assets/js-bundles/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js-bundles/main/bundle-main.min.js"></script>
 </body>
 </html>
