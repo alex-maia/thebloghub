@@ -10,7 +10,7 @@
     border-bottom: 1px solid $beige--37;
 
     &__logo{
-        @include title--medium($beige--87--main);
+        @include title--medium(light-dark($beige--17,$beige--87--main));
         text-transform: capitalize;
     }
 
@@ -21,12 +21,12 @@
     }
 
     &__link{
-        @include text--xsmall--medium($beige--87--main);
+        @include text--xsmall--medium(light-dark($beige--17,$beige--87--main));
         text-transform: capitalize;
         @include transition;
 
         &:hover{
-            color: color.adjust($beige--87--main, $lightness: -30%);
+            color: light-dark(color.adjust($beige--17, $lightness: 30%), color.adjust($beige--87--main, $lightness: -30%));
         }
 
         &--orange{
@@ -42,5 +42,29 @@
         display: flex;
         gap: 24px;
         align-items: center;    
+    }
+
+    &__button-dark-mode{
+        background: transparent;
+        cursor: pointer;
+        appearance: none;
+
+        &:checked{
+            &:after{
+                filter: brightness(0) saturate(100%) invert(8%) sepia(20%) saturate(0%) hue-rotate(285deg) brightness(110%) contrast(92%);
+            }
+        }
+
+        &:after{
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-image: url("/assets/img/icons/icon-dark-mode.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(12deg) brightness(116%) contrast(106%);
+        }
     }
 }

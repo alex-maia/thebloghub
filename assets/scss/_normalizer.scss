@@ -4,7 +4,11 @@
 /*-------------*/
 
 :root {
-    color-scheme: light dark;
+    color-scheme: dark;
+
+    :has(.header__button-dark-mode:checked){
+        color-scheme: light;
+    }
 }
 
 *,

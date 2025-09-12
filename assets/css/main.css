@@ -9,7 +9,10 @@
 /*-------------*/
 /*-------------*/
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
+}
+:root :has(.header__button-dark-mode:checked) {
+  color-scheme: light;
 }
 
 *,
@@ -259,7 +262,7 @@ input, select {
   font-weight: 700;
   font-size: 24px;
   line-height: 1.4;
-  color: hsl(14, 19%, 87%);
+  color: light-dark(hsl(14, 19%, 17%), hsl(14, 19%, 87%));
   text-transform: capitalize;
 }
 .header__nav {
@@ -272,12 +275,12 @@ input, select {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
-  color: hsl(14, 19%, 87%);
+  color: light-dark(hsl(14, 19%, 17%), hsl(14, 19%, 87%));
   text-transform: capitalize;
   transition: all 0.3s ease-out;
 }
 .header__link:hover {
-  color: hsl(14, 19%, 57%);
+  color: light-dark(hsl(14, 19%, 47%), hsl(14, 19%, 57%));
 }
 .header__link--orange {
   color: hsl(11, 100%, 60%);
@@ -289,4 +292,23 @@ input, select {
   display: flex;
   gap: 24px;
   align-items: center;
+}
+.header__button-dark-mode {
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+.header__button-dark-mode:checked:after {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(20%) saturate(0%) hue-rotate(285deg) brightness(110%) contrast(92%);
+}
+.header__button-dark-mode:after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/img/icons/icon-dark-mode.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(12deg) brightness(116%) contrast(106%);
 }
