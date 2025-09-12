@@ -8,6 +8,10 @@
 }
 /*-------------*/
 /*-------------*/
+:root {
+  color-scheme: light dark;
+}
+
 *,
 *::before,
 *::after {
@@ -62,7 +66,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 body {
   line-height: 1;
-  background-color: hsl(11, 100%, 3%);
+  background-color: light-dark(hsl(11, 100%, 98%), hsl(11, 100%, 3%));
   color: hsl(14, 19%, 87%);
 }
 

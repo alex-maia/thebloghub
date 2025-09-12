@@ -3,6 +3,10 @@
 @use "tokens/tokens" as *;
 /*-------------*/
 
+:root {
+            color-scheme: light dark;
+}
+
 *,
 *::before,
 *::after{
@@ -57,7 +61,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 body {
     line-height: 1;
-    background-color: $orange--03;
+    background-color: light-dark($orange--98, $orange--03);
     color: $beige--87--main;
 }
 
