@@ -8,8 +8,10 @@ import (
 )
 
 func main() {
-	// Carregar configs
-	config.LoadConfig()
+	// Carregar e validar configs
+	if err := config.LoadConfig(); err != nil {
+		log.Fatalf("Erro ao carregar configuração: %v", err)
+	}
 
 	// Definir rotas
 	routes.RegisterRoutes()
@@ -21,8 +23,10 @@ func main() {
 	// Iniciar servidor
 	addr := ":" + config.Cfg.AppPort
 	log.Printf("Servidor %s iniciado em http://localhost%s\n", config.Cfg.AppName, addr)
+	log.Printf("Ambiente: %s\n", config.Cfg.AppEnv)
+
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Erro ao iniciar servidor: %v", err)
 	}
 }

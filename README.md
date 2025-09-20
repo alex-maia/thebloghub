@@ -38,6 +38,35 @@ main.go        # Entrada principal da aplicação
    ```bash
    npm install
    ```
+4. Configure as variáveis de ambiente:
+   ```bash
+   cp .env.example .env
+   # Edite o arquivo .env com as suas configurações
+   ```
+
+## Configuração
+
+### Variáveis de Ambiente
+
+O projeto utiliza variáveis de ambiente para configuração. Copie o arquivo `.env.example` para `.env` e configure as seguintes variáveis:
+
+- `APP_NAME`: Nome da aplicação (padrão: TheBlogHub)
+- `APP_ENV`: Ambiente de execução (development/production/testing)
+- `APP_PORT`: Porta do servidor (padrão: 8080)
+- `DB_HOST`: Host da base de dados (padrão: localhost)
+- `DB_PORT`: Porta da base de dados (padrão: 5432)
+- `DB_USER`: Utilizador da base de dados
+- `DB_PASS`: Password da base de dados
+- `DB_NAME`: Nome da base de dados
+- `SECRET_KEY`: Chave secreta (mínimo 32 caracteres)
+
+### Validação de Configuração
+
+A aplicação valida automaticamente as configurações ao iniciar:
+
+- Em modo `production`, todas as variáveis de base de dados são obrigatórias
+- A `SECRET_KEY` deve ter pelo menos 32 caracteres
+- O `APP_ENV` deve ser um dos valores válidos
 
 ## Execução
 
