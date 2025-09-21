@@ -1,37 +1,38 @@
 package frontend
 
 import (
-    "net/http"
-    "html/template"
-    "log"
-    "path/filepath"
+	"html/template"
+	"log"
+	"net/http"
+	"path/filepath"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    // Caminhos dos templates
-    master := filepath.Join("views", "frontend", "layouts", "masterpage.html")
-    content := filepath.Join("views", "frontend", "homepage.html")
-    header := filepath.Join("views", "frontend", "shared", "header.html")
-    footer := filepath.Join("views", "frontend", "shared", "footer.html")
+	// Caminhos dos templates
+	master := filepath.Join("views", "frontend", "layouts", "masterpage.html")
+	content := filepath.Join("views", "frontend", "homepage.html")
+	header := filepath.Join("views", "frontend", "shared", "header.html")
+	footer := filepath.Join("views", "frontend", "shared", "footer.html")
+	headline := filepath.Join("views", "frontend", "homepage", "headline.html")
 
-    // Parse de todos os templates
-    tmpl, err := template.ParseFiles(master, content, header, footer)
-    if err != nil {
-        log.Println("Erro ao carregar templates:", err)
-        http.Error(w, "Erro ao carregar templates", http.StatusInternalServerError)
-        return
-    }
+	// Parse de todos os templates
+	tmpl, err := template.ParseFiles(master, content, header, footer, headline)
+	if err != nil {
+		log.Println("Erro ao carregar templates:", err)
+		http.Error(w, "Erro ao carregar templates", http.StatusInternalServerError)
+		return
+	}
 
-    // Dados para o template
-    data := map[string]string{
-        "Title": "Página Inicial",
-    }
+	// Dados para o template
+	data := map[string]string{
+		"Title": "Página Inicial",
+	}
 
-    // Executa o template do layout master
-    err = tmpl.ExecuteTemplate(w, "masterpage.html", data)
-    if err != nil {
-        log.Println("Erro ao renderizar template:", err)
-        http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
-        return
-    }
+	// Executa o template do layout master
+	err = tmpl.ExecuteTemplate(w, "masterpage.html", data)
+	if err != nil {
+		log.Println("Erro ao renderizar template:", err)
+		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
+		return
+	}
 }
