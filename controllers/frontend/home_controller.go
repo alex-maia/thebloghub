@@ -9,11 +9,11 @@ import (
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Caminhos dos templates
-	master := filepath.Join("views", "frontend", "layouts", "masterpage.html")
-	content := filepath.Join("views", "frontend", "homepage.html")
-	header := filepath.Join("views", "frontend", "shared", "header.html")
-	footer := filepath.Join("views", "frontend", "shared", "footer.html")
-	headline := filepath.Join("views", "frontend", "homepage", "headline.html")
+	master := filepath.Join("resources", "views", "frontend", "layouts", "masterpage.html")
+	content := filepath.Join("resources", "views", "frontend", "homepage.html")
+	header := filepath.Join("resources", "views", "frontend", "shared", "header.html")
+	footer := filepath.Join("resources", "views", "frontend", "shared", "footer.html")
+	headline := filepath.Join("resources", "views", "frontend", "homepage", "headline.html")
 
 	// Parse de todos os templates
 	tmpl, err := template.ParseFiles(master, content, header, footer, headline)

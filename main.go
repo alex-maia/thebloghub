@@ -16,9 +16,9 @@ func main() {
 	// Definir rotas
 	routes.RegisterRoutes()
 
-	// Servir ficheiros estáticos em /assets/
-	staticFiles := http.FileServer(http.Dir("assets"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", staticFiles))
+	// Servir ficheiros estáticos em /public/
+	staticFiles := http.FileServer(http.Dir("public"))
+	http.Handle("/public/", http.StripPrefix("/public/", staticFiles))
 
 	// Iniciar servidor
 	addr := ":" + config.Cfg.AppPort

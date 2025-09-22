@@ -4,21 +4,29 @@ O TheBlogHub é um projeto desenvolvido apenas para fins de estudo, utilizando G
 
 ## Funcionalidades
 
-- Publicação e gestão de artigos
-- Estrutura modular (Go, SCSS, JS)
-- Layout responsivo
-- Minificação de assets para melhor performance
+- **Backend em Go** com arquitetura MVC
+- **Validação robusta de configuração** por ambiente
+- **Gestão de variáveis de ambiente** com valores padrão
+- **Sistema de templates** HTML modular
+- **Build system** com Gulp (SCSS, JS)
+- **Layout responsivo** com design moderno
+- **Minificação de assets** para melhor performance
+- **Logs informativos** com diferentes níveis por ambiente
 
 ## Estrutura do Projeto
 
 ```
-assets/        # Ficheiros estáticos (CSS, JS, imagens, fontes)
-config/        # Configurações da aplicação
+public/        # Ficheiros estáticos compilados (CSS, JS, imagens, fontes)
+resources/     # Ficheiros fonte (SCSS, JS, templates HTML)
+├── js/        # JavaScript fonte
+├── scss/      # Estilos SCSS
+└── views/     # Templates HTML
+config/        # Configurações da aplicação com validação
 controllers/   # Lógica de controlo (Go)
 database/      # Conexão e gestão da base de dados
 models/        # Modelos de dados
 routes/        # Definição de rotas
-views/         # Templates HTML
+.env.example   # Exemplo de variáveis de ambiente
 gulpfile.js    # Tarefas de build frontend
 main.go        # Entrada principal da aplicação
 ```
@@ -64,20 +72,62 @@ O projeto utiliza variáveis de ambiente para configuração. Copie o arquivo `.
 
 A aplicação valida automaticamente as configurações ao iniciar:
 
-- Em modo `production`, todas as variáveis de base de dados são obrigatórias
-- A `SECRET_KEY` deve ter pelo menos 32 caracteres
-- O `APP_ENV` deve ser um dos valores válidos
+- **Ambientes suportados:** `development`, `production`, `testing`
+- **Modo produção:** Todas as variáveis de base de dados são obrigatórias
+- **Segurança:** `SECRET_KEY` deve ter pelo menos 32 caracteres
+- **Valores padrão:** Configurações sensatas para desenvolvimento
+- **Tratamento de erros:** Falha rápida com mensagens claras
+
+### Funções Utilitárias
+
+O módulo `config` inclui funções para verificar o ambiente atual:
+
+```go
+config.IsDevelopment()  // true se APP_ENV=development
+config.IsProduction()   // true se APP_ENV=production
+config.IsTesting()      // true se APP_ENV=testing
+```
 
 ## Execução
 
-1. Compile e execute o backend:
-   ```bash
-   go run main.go
-   ```
-2. Para compilar/minificar assets:
-   ```bash
-   npm run build
-   ```
+### Desenvolvimento
+
+```bash
+# Executar diretamente
+go run main.go
+
+# Ou compilar e executar
+go build -o thebloghub main.go
+./thebloghub
+```
+
+### Build de Assets
+
+```bash
+# Compilar SCSS (resources/scss → public/css)
+npm run build-dev
+
+# Compilar JS (resources/js → public/js)
+npm run build-js
+
+# Watch mode (recompila automaticamente)
+npm run build-watch
+```
+
+### Estrutura de Build
+
+- **Fonte:** `resources/` (SCSS, JS, templates)
+- **Compilado:** `public/` (CSS, JS bundles, assets finais)
+- **Separação clara** entre código fonte e assets públicos
+- **URLs:** Assets servidos em `/public/` (ex: `/public/css/main.css`)
+
+### Exemplos de Logs
+
+```
+Configuração carregada com sucesso - Ambiente: development, Porta: 8080
+Servidor TheBlogHub iniciado em http://localhost:8080
+Ambiente: development
+```
 
 ## Como contribuir
 

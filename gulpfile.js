@@ -12,22 +12,22 @@ const concat = require("gulp-concat");
    Task SCSS → CSS
 ------------------------- */
 function styles() {
-  return gulp.src("assets/scss/*.scss")
+  return gulp.src("resources/scss/*.scss")
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("assets/css"))          // versão normal
+    .pipe(gulp.dest("public/css"))          // versão normal
     .pipe(cleanCSS())                        // minificar
     .pipe(rename({ suffix: ".min" }))
     .pipe(sourcemaps.write("../maps"))       // source maps em /css/maps
-    .pipe(gulp.dest("assets/css/minify"));  // versão minificada
+    .pipe(gulp.dest("public/css/minify"));  // versão minificada
 }
 
 /* -------------------------
    Task JS → Bundles
 ------------------------- */
 function bundleJS(done) {
-  const jsDir = "assets/js";
-  const bundleDir = "assets/js-bundles";
+  const jsDir = "resources/js";
+  const bundleDir = "public/js";
 
   // Lê subpastas dentro de /js
   fs.readdirSync(jsDir, { withFileTypes: true })
@@ -56,8 +56,8 @@ function bundleJS(done) {
    Watch SCSS e JS
 ------------------------- */
 function watchFiles() {
-  gulp.watch("assets/scss/**/*.scss", styles);
-  gulp.watch("assets/js/**/*.js", bundleJS);
+  gulp.watch("resources/scss/**/*.scss", styles);
+  gulp.watch("resources/js/**/*.js", bundleJS);
 }
 
 /* -------------------------
