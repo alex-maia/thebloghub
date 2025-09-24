@@ -67,7 +67,7 @@ function bundleJS(done) {
    Watch SCSS e JS
 ------------------------- */
 function watchFiles() {
-  gulp.watch("resources/scss/**/*.scss", styles);
+  gulp.watch("resources/scss/**/*.scss", stylesFrontend);
   gulp.watch("resources/js/**/*.js", bundleJS);
 }
 
@@ -77,4 +77,4 @@ function watchFiles() {
 exports['build-frontend'] = stylesFrontend;               // só compila SCSS
 exports['build-backend'] = stylesBackend;               // só compila SCSS
 exports['build-js'] = bundleJS;              // só cria JS bundles
-exports['build-watch'] = gulp.series(stylesFrontend, stylesBackend, bundleJS, watchFiles); // compila tudo + watch
+exports['build-watch'] = gulp.series(stylesFrontend, bundleJS, watchFiles); // compila tudo + watch

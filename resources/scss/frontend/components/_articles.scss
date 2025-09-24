@@ -1,0 +1,54 @@
+@use 'sass:color';
+@use "../functions" as *;
+@use "../tokens/colors" as *;
+
+
+.article{
+    &__link{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__figure{
+        aspect-ratio: 4 / 2;
+        background-color: light-dark($neutral--60, $neutral--82);
+        border-radius: 8px;
+    }
+
+    &__image{
+        aspect-ratio: 4 / 2;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    &__container-text{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    &__title{
+        @include title--xlarge(light-dark($beige--17 ,$beige--87--main));
+        @include transition;
+
+        &:hover{
+            color: light-dark(color.adjust($beige--17, $lightness: 30%), color.adjust($beige--87--main, $lightness: -30%));
+        }
+    }
+
+    &__section{
+        @include text--xsmall--medium($orange--60--main);
+        @include transition;
+
+        &:hover{
+            color: color.adjust($orange--60--main, $lightness: -30%);
+        }
+    }
+
+    &__date{
+        @include text--xsmall(light-dark($beige--17 ,$beige--87--main));
+        opacity: 87%;
+        pointer-events: none;
+    }
+}

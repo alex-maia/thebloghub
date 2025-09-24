@@ -1,0 +1,7 @@
+@use 'sass:color';
+@use "../functions" as *;
+
+.headline{
+    @include container--desktop;
+    margin-top: 72px;
+}

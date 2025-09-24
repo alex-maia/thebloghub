@@ -14,9 +14,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	header := filepath.Join("resources", "views", "frontend", "shared", "header.html")
 	footer := filepath.Join("resources", "views", "frontend", "shared", "footer.html")
 	headline := filepath.Join("resources", "views", "frontend", "homepage", "headline.html")
+	article := filepath.Join("resources", "views", "frontend", "components", "article.html")
 
 	// Parse de todos os templates
-	tmpl, err := template.ParseFiles(master, content, header, footer, headline)
+	tmpl, err := template.ParseFiles(master, content, header, footer, headline, article)
 	if err != nil {
 		log.Println("Erro ao carregar templates:", err)
 		http.Error(w, "Erro ao carregar templates", http.StatusInternalServerError)

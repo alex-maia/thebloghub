@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="/public/css/frontend/minify/main.min.css">
+    {{template "headStyes" .}}
 </head>
 <body>
     {{template "header" .}}
@@ -15,5 +16,6 @@
 
     <script src="/public/js/vendor/jquery-3.7.1.min.js"></script>
     <script src="/public/js/main/bundle-main.min.js"></script>
+    {{template "footerScripts" .}}
 </body>
 </html>
