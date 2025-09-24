@@ -11,15 +11,26 @@ const concat = require("gulp-concat");
 /* -------------------------
    Task SCSS → CSS
 ------------------------- */
-function styles() {
-  return gulp.src("resources/scss/*.scss")
+function stylesFrontend() {
+  return gulp.src("resources/scss/frontend/*.scss")
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("public/css"))          // versão normal
+    .pipe(gulp.dest("public/css/frontend"))          // versão normal
     .pipe(cleanCSS())                        // minificar
     .pipe(rename({ suffix: ".min" }))
     .pipe(sourcemaps.write("../maps"))       // source maps em /css/maps
-    .pipe(gulp.dest("public/css/minify"));  // versão minificada
+    .pipe(gulp.dest("public/css/frontend/minify"));  // versão minificada
+}
+
+function stylesBackend() {
+  return gulp.src("resources/scss/backend/*.scss")
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("public/css/backend"))          // versão normal
+    .pipe(cleanCSS())                        // minificar
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(sourcemaps.write("../maps"))       // source maps em /css/maps
+    .pipe(gulp.dest("public/css/backend/minify"));  // versão minificada
 }
 
 /* -------------------------
@@ -63,6 +74,7 @@ function watchFiles() {
 /* -------------------------
    Export tasks
 ------------------------- */
-exports['build-dev'] = styles;               // só compila SCSS
+exports['build-frontend'] = stylesFrontend;               // só compila SCSS
+exports['build-backend'] = stylesBackend;               // só compila SCSS
 exports['build-js'] = bundleJS;              // só cria JS bundles
-exports['build-watch'] = gulp.series(styles, bundleJS, watchFiles); // compila tudo + watch
+exports['build-watch'] = gulp.series(stylesFrontend, stylesBackend, bundleJS, watchFiles); // compila tudo + watch

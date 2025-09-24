@@ -306,7 +306,7 @@ input, select {
   display: block;
   width: 24px;
   height: 24px;
-  background-image: url("/assets/img/icons/icon-dark-mode.svg");
+  background-image: url("/public/img/icons/icon-dark-mode.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
