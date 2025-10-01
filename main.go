@@ -4,7 +4,10 @@ import (
 	"log"
 	"net/http"
 	"thebloghub/config"
+	"thebloghub/database"
+	"thebloghub/models"
 	"thebloghub/routes"
+	"thebloghub/seed"
 )
 
 func main() {
@@ -12,6 +15,19 @@ func main() {
 	if err := config.LoadConfig(); err != nil {
 		log.Fatalf("Erro ao carregar configuração: %v", err)
 	}
+
+	// Iniciar a base de dados
+	database.Connect()
+
+	// AutoMigrate cria/atualiza tabelas
+	if err := database.DB.AutoMigrate(&models.Image{}, &models.Article{}); err != nil {
+		log.Fatalf("Erro ao migrar tabelas: %v", err)
+	}
+
+	log.Println("Tabelas migradas com sucesso!")
+
+	// Rodar seed
+	seed.Run()
 
 	// Definir rotas
 	routes.RegisterRoutes()

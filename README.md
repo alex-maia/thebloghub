@@ -7,6 +7,7 @@ O TheBlogHub é um projeto desenvolvido apenas para fins de estudo, utilizando G
 - **Backend em Go** com arquitetura MVC
 - **Validação robusta de configuração** por ambiente
 - **Gestão de variáveis de ambiente** com valores padrão
+- **Ambiente de testes** com `config.LoadTestConfig()` e `database.ConnectTest()`
 - **Sistema de templates** HTML modular
 - **Build system** com Gulp (SCSS, JS)
 - **Layout responsivo** com design moderno
@@ -88,6 +89,12 @@ config.IsProduction()   // true se APP_ENV=production
 config.IsTesting()      // true se APP_ENV=testing
 ```
 
+#### Configuração de Testes
+
+- A função `config.LoadTestConfig()` define variáveis para o ambiente de testes e chama `LoadConfig()`.
+- Use `database.ConnectTest()` para conectar explicitamente ao banco de testes quando `APP_ENV=testing`.
+- Nos testes de exemplo em `tests/`, o schema é resetado e as tabelas são migradas automaticamente via GORM.
+
 ## Execução
 
 ### Desenvolvimento
@@ -100,6 +107,25 @@ go run main.go
 go build -o thebloghub main.go
 ./thebloghub
 ```
+
+### Testes
+
+Pré‑requisitos: PostgreSQL em execução e uma base de dados de teste acessível (credenciais e nome à sua escolha).
+
+Passos gerais:
+
+1. Garanta que existe um utilizador e uma base de dados dedicados a testes.
+2. Execute os testes com:
+
+```bash
+go test ./...
+```
+
+Notas:
+
+- `config.LoadTestConfig()` prepara as variáveis de ambiente de teste e chama `LoadConfig()`.
+- `database.ConnectTest()` conecta ao banco configurado para o ambiente de teste.
+- Os testes de exemplo resetam o schema e executam migrações automaticamente via GORM.
 
 ### Build de Assets
 

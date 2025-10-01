@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+	"thebloghub/database"
+	"thebloghub/services"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -24,9 +26,16 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	articles, err := services.GetAllArticles(database.DB)
+	if err != nil {
+		http.Error(w, "Erro ao buscar artigos", http.StatusInternalServerError)
+		return
+	}
+
 	// Dados para o template
-	data := map[string]string{
-		"Title": "Página Inicial",
+	data := map[string]interface{}{
+		"Title":    "Página Inicial",
+		"Articles": articles,
 	}
 
 	// Executa o template do layout master
