@@ -25,19 +25,38 @@ func Run() {
 		}
 	}
 
+	themes := []models.Theme{
+		{Theme: "Techology"},
+		{Theme: "IA"},
+	}
+
+	for i := range themes {
+		if err := database.DB.FirstOrCreate(&themes[i], models.Theme{Theme: themes[i].Theme}).Error; err != nil {
+			log.Println("Erro ao criar tema:", err)
+		}
+	}
+
 	// Cria alguns artigos associados às imagens
 	articles := []models.Article{
 		{
 			Title:   "The Rise of AI: Transforming the Future",
 			Lead:    "LEAD: The Rise of AI: Transforming the Future",
 			Text:    "TEXT: Conteúdo do primeiro artigo.",
-			ImageID: &images[0].ID, // índice válido
+			ImageID: &images[7].ID, // índice válido
+			ThemeID: &themes[0].ID, // índice válido
 		},
 	}
 
-	for i, a := range articles {
-		a.ImageID = &images[i%len(images)].ID
-		database.DB.FirstOrCreate(&a, models.Article{Lead: a.Lead})
+	for i := range articles {
+		database.DB.
+			Where(models.Article{Title: articles[i].Title}).
+			Assign(models.Article{
+				Title:   articles[i].Title,
+				Text:    articles[i].Text,
+				ImageID: articles[i].ImageID,
+				ThemeID: articles[i].ThemeID,
+			}).
+			FirstOrCreate(&articles[i])
 	}
 
 	log.Println("Seed concluída com sucesso!")

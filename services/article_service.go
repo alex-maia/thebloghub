@@ -8,7 +8,7 @@ import (
 
 func GetAllArticles(db *gorm.DB) ([]models.Article, error) {
 	var articles []models.Article
-	if err := db.Preload("Image").Find(&articles).Error; err != nil {
+	if err := db.Preload("Image").Preload("Theme").Find(&articles).Error; err != nil {
 		return nil, err
 	}
 	return articles, nil

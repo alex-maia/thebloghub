@@ -30,19 +30,22 @@ func setupTestDB(t *testing.T) *gorm.DB {
 	}
 
 	// Migrar tabelas
-	if err := db.AutoMigrate(&models.Image{}, &models.Article{}); err != nil {
+	if err := db.AutoMigrate(&models.Image{}, &models.Theme{}, &models.Article{}); err != nil {
 		t.Fatalf("Erro ao migrar DB: %v", err)
 	}
 
 	// Inserir seed mínima para teste
 	image := models.Image{URL: "/public/img/test.jpg"}
+	theme := models.Theme{Theme: "techonlogy"}
 	db.Create(&image)
+	db.Create(&theme)
 
 	article := models.Article{
 		Title:     "Artigo de Teste",
 		Lead:      "Lead Teste",
 		Text:      "Texto do artigo de teste",
 		ImageID:   &image.ID,
+		ThemeID:   &theme.ID,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

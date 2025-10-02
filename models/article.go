@@ -9,6 +9,8 @@ type Article struct {
 	Text      string `gorm:"type:text;not null"`
 	ImageID   *uint  // FK para Image (opcional)
 	Image     *Image `gorm:"foreignKey:ImageID"`
+	ThemeID   *uint  // FK para Theme (opcional)
+	Theme     *Theme `gorm:"foreignKey:ThemeID"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt *time.Time `gorm:"index"`

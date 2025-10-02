@@ -20,7 +20,7 @@ func main() {
 	database.Connect()
 
 	// AutoMigrate cria/atualiza tabelas
-	if err := database.DB.AutoMigrate(&models.Image{}, &models.Article{}); err != nil {
+	if err := database.DB.AutoMigrate(&models.Image{}, &models.Theme{}, &models.Article{}); err != nil {
 		log.Fatalf("Erro ao migrar tabelas: %v", err)
 	}
 
