@@ -45,6 +45,13 @@ func Run() {
 			ImageID: &images[7].ID, // índice válido
 			ThemeID: &themes[0].ID, // índice válido
 		},
+		{
+			Title:   "The Rise of AI: TITULO TESTE",
+			Lead:    "LEAD: The Rise of AI: LEAD TESTE",
+			Text:    "TEXT: TESTE Conteúdo do primeiro artigo.",
+			ImageID: &images[1].ID, // índice válido
+			ThemeID: &themes[1].ID, // índice válido
+		},
 	}
 
 	for i := range articles {

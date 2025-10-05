@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/public/css/backend/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/backend/vendor/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+    <main class="wrapper">
+        {{ template "header" . }}
+        {{ template "aside" . }}
+        <!-- Content Wrapper. Contains page content -->
+        <section class="content-wrapper">
+            {{ template "content" . }}
+        </section>
+        {{ template "footer" . }}
+    </main>
+
+    <script src="/public/js/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/public/js/vendor/adminlte.min.js"></script>
+    <script src="/public/js/vendor/popperCore.min.js"></script>
+    <script src="/public/js/vendor/popperDom.min.js"></script>
+    <script src="/public/js/main/bundle-main.min.js"></script>
+</body>
+</html>

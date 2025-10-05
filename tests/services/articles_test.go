@@ -13,7 +13,7 @@ import (
 )
 
 // setupTestDB prepara um banco limpo para cada teste
-func setupTestDB(t *testing.T) *gorm.DB {
+func setupTestDBArticle(t *testing.T) *gorm.DB {
 	// Carregar config de teste
 	err := config.LoadTestConfig()
 	if err != nil {
@@ -56,7 +56,7 @@ func setupTestDB(t *testing.T) *gorm.DB {
 
 // Teste do service GetAllArticles
 func TestGetAllArticles(t *testing.T) {
-	db := setupTestDB(t)
+	db := setupTestDBArticle(t)
 
 	articles, err := services.GetAllArticles(db)
 	if err != nil {

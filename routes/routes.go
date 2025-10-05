@@ -1,11 +1,13 @@
 package routes
 
 import (
-    "net/http"
+	"net/http"
+	"thebloghub/controllers/backend"
 	"thebloghub/controllers/frontend"
 )
 
 func RegisterRoutes() {
-    // Frontend
-    http.HandleFunc("/", frontend.HomeHandler)
+	// Frontend
+	http.HandleFunc("/", frontend.HomeHandler)
+	http.HandleFunc("/admin", backend.HomeHandler)
 }
