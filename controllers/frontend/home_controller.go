@@ -11,12 +11,12 @@ import (
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Caminhos dos templates
-	master := filepath.Join("resources", "views", "frontend", "layouts", "masterpage.html")
-	content := filepath.Join("resources", "views", "frontend", "homepage.html")
-	header := filepath.Join("resources", "views", "frontend", "shared", "header.html")
-	footer := filepath.Join("resources", "views", "frontend", "shared", "footer.html")
-	headline := filepath.Join("resources", "views", "frontend", "homepage", "headline.html")
-	article := filepath.Join("resources", "views", "frontend", "components", "article.html")
+	master := filepath.Join("resources", "views", "frontend", "layouts", "masterpage.gohtml")
+	content := filepath.Join("resources", "views", "frontend", "homepage.gohtml")
+	header := filepath.Join("resources", "views", "frontend", "shared", "header.gohtml")
+	footer := filepath.Join("resources", "views", "frontend", "shared", "footer.gohtml")
+	headline := filepath.Join("resources", "views", "frontend", "homepage", "headline.gohtml")
+	article := filepath.Join("resources", "views", "frontend", "components", "article.gohtml")
 
 	// Parse de todos os templates
 	tmpl, err := template.ParseFiles(master, content, header, footer, headline, article)
@@ -39,7 +39,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Executa o template do layout master
-	err = tmpl.ExecuteTemplate(w, "masterpage.html", data)
+	err = tmpl.ExecuteTemplate(w, "masterpage.gohtml", data)
 	if err != nil {
 		log.Println("Erro ao renderizar template:", err)
 		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
